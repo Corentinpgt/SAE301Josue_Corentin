@@ -1,0 +1,1 @@
+<p class="product__section_name">{{name}}</p>
