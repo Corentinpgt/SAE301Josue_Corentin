@@ -1,0 +1,12 @@
+{
+  "name": "sae301main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass:template": "sass --watch template.scss:css/template.css",
+    "sass:style": "sass --watch style.scss:css/style.css"
+  },
+  "author": "",
+  "license": "ISC"
+}
