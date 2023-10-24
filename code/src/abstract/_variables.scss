@@ -1,0 +1,44 @@
+$primarycolors: (
+    --black: #000000,
+    --white: #FFFFFF,
+    --darkGrey: #444444,
+    --grey: #787878,
+    --blue: #0050FC,
+    --darkBlue: #080986,
+    --green: #068808,
+    --veryDarkBlue: #0C2340,
+    --darkBlueGrey: #162E4B
+);
+
+$tokencolors: (
+    --navigation: var(--black),
+    --nomcartevelo: var(--darkBlue),
+    --prixcartevelo: var(--grey),
+    --othertext: var(--darkBlue),
+    --footerbg1 : var(--veryDarkBlue),
+    --footerbg2 : var(--darkBlueGrey),
+    --footerfont: var(--white),
+
+    --btnbg : var(--darkBlue),
+    --btngradiant : linear-gradient(90deg, #080986, #0050fc),
+    --btnfont : var(--white),
+
+    --bannerexpired-font : var(--white),
+    --bannerexpired-bg : var(--darkBlueGrey),
+    --bannersoon-font : var(--white),
+    --bannersoon-bg : var(--green),
+
+    --nomvelo : var(--darkBlue),
+    --prixvelo : var(--grey),
+
+    --selectbg : var(--white),
+
+    --pricebg : var(--darkBlue),
+    --pricefont : var(--white),
+
+    --formfont : var(--darkGrey),
+    --formborder : var(--darkGrey),
+
+    --fonthover : var(--blue),
+
+);
