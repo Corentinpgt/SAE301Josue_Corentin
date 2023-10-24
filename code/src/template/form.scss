@@ -1,0 +1,48 @@
+@use '../abstract/' as *;
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 40rem;
+
+
+    &__h2 {
+        font-size: 3rem;
+        text-transform: uppercase;
+        color: map-get($tokencolors, --formfont );
+    }
+
+    &__ul {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    &__li {
+
+    }
+
+    &__input {
+        padding: 1rem 2rem;
+        font-size: 1.5rem;
+        color: map-get($tokencolors, --formfont );
+        border: 1px solid map-get($tokencolors, --formborder );
+    }
+
+    &__btn {
+        padding: .75rem 1rem;
+        width: 15rem;
+        text-transform: uppercase;
+        font-size: 1.5rem;
+        background: map-get($tokencolors, --btngradiant );
+        color: map-get($tokencolors, --btnfont );
+        border: none;
+    }
+
+    &__btn:hover {
+        cursor: pointer;
+    }
+
+}

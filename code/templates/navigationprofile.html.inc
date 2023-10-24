@@ -1,0 +1,2 @@
+<li class="list__item__prfl"><p class="list__item__prfl_name">{{username}}</p></li>
+<li class="list__item__prfl"><img class="list__item__prfl_img" src="https://picsum.photos/200/300" alt="Image de profil de l'utilisateur"></li>
