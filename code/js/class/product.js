@@ -33,7 +33,7 @@ class Product {
         return this.#name;
     }
 
-    getIdcategory() {
+    getIdCategory() {
         return this.#idcategory;
     }
 

@@ -18,8 +18,7 @@ let C = {};
 
 C.init = async function() {
     await M.products.load("https://mmi.unilim.fr/~pouget35/api/products");
-    V.render(M.products.findAll());
-    console.log(M.products.findAll());
+    V.render(M.products.findByCategory(2));
 }
 
 C.init();
