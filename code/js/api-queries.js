@@ -1,26 +1,7 @@
-// class Product {
-//     id;
-//     name = "";
-//     idcategory;
-
-//     constructor(id, name, idcategory) {
-//         this.id = id;
-//         this.name = name;
-//         this.idcategory = idcategory;
-//     }
-
-//     getId() {
-//         return this.id;
-//     }
-
-//     getName() {
-//         return this.name;
-//     }
-
-//     getIdcategory() {
-//         return this.idcategory;
-//     }
-// }
+/**
+ *  Besoin de comprendre comment fonctionne fetch ?
+ *  C'est ici : https://fr.javascript.info/fetch
+ */
 
 
 
@@ -35,24 +16,22 @@
  * 
  *  Le serveur renverra les données au format JSON.
  *  La fonction les retourne après conversion en objet Javascript (ou false si la requête a échoué)
+ * 
+ *  ATTENTION : La fonction est asynchrone, donc quand on l'appelle il ne faut pas oublier "await".
+ *  Exemple : let data = await getRequest(http://.../api/products);
  */
 let getRequest = async function(uri){
 
-    options = {
+    let options = {
         method: "GET"
     };
 
     let response = await fetch(uri, options); // exécution (asynchrone) de la requête et attente de la réponse
-    let json = await response.json(); // extraction du json retourné par le serveur (opération asynchrone aussi)
-    // json.forEach(elt => {
-    //     let prod = new Product(elt.id,elt.name,elt.category);
-    //     console.log(prod.getName);
-    // });
-    console.log(json);
-    renderAllCard(json);
-    return json // et on retourne le tout converti en Javascript.
+    let $obj = await response.json(); // extraction du json retourné par le serveur (opération asynchrone aussi)
+    return $obj; // et on retourne le tout (response.json() a déjà converti le json en objet Javscript)
 }
-console.log(getRequest("https://mmi.unilim.fr/~pouget35/api/products/"));
+
+
 /**
  *  postRequest
  * 
@@ -60,25 +39,27 @@ console.log(getRequest("https://mmi.unilim.fr/~pouget35/api/products/"));
  * 
  *  Une requête en POST correspond à une demande de création d'une ressource (dans l'exemple, création d'un produit)
  *  Pour créer la ressource, on fournit les données utiles via le paramètre data.
- *  Par exemple : postRequest("http://.../products", {name: "Marteau", category:2} )
  * 
  *  Le serveur retourne en JSON la nouvelle ressource créée en base avec son identifiant.
  *  La fonction retourne les données après conversion en objet Javascript (ou false si la requête a échoué)
+ * 
+ *  ATTENTION : La fonction est asynchrone, donc quand on l'appelle il ne faut pas oublier "await".
+ *  Exemple : let data = await postRequest(http://.../api/products, {name:"Pain", category:2});
  */
 let postRequest = async function(uri, data){
     // encodage des données au format JSON (à vous de bien transmettre ce que le serveur attend)
-    json = JSON.stringify(data);
+    let json = JSON.stringify(data);
 
     // Défition des options de la requêtes
-    options = {
+    let options = {
         method: 'POST',
         headers: {'Content-type': 'application/json;charset=utf-8'}, // on précise que la requête contient du json
         body: json // le json est placé dans le corps de la requête
     }
 
     let response = await fetch(uri, options); // exécution (asynchrone) de la requête et attente de la réponse
-    let json = await response.json(); // extraction du json retourné par le serveur (opération asynchrone aussi)
-    return json; // et on retourne le tout converti en Javascript.
+    let $obj = await response.json(); // extraction du json retourné par le serveur (opération asynchrone aussi)
+    return $obj; // et on retourne le tout (response.json() a déjà converti le json en objet Javscript)
 }
 
 
@@ -112,28 +93,4 @@ let patchRequest = async function(uri, data){
    // Pas implémenté. TODO if needed.
 }
 
-
-
-
-
-
-
-
-// Function
-
-
-let renderCard = async function(data) {
-    let get = await fetch("templates/productcard.html.inc");
-    let template = await get.text();
-    template = template.replaceAll("{{productname}}",data.name);
-    template = template.replaceAll("{{productprice}}",data.price + " €");
-    template = template.replaceAll("{{src}}",data.img);
-    document.querySelector('#content').innerHTML += template;
-}
-
-let renderAllCard = function(data) {
-    data.forEach(elt => {
-        renderCard(elt);
-    });
-    
-}
+export {getRequest, postRequest};

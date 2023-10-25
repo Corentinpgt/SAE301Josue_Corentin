@@ -53,9 +53,33 @@ class ProductRepository extends EntityRepository {
             $p = new Product($obj->id);
             $p->setName($obj->name);
             $p->setIdcategory($obj->category);
-            $p->setDescription($obj->description);
             $p->setPrice($obj->price);
             $p->setImg($obj->img);
+            $p->setDescription($obj->description);
+            $p->setTaille($obj->taille);
+            $p->setCouleur($obj->couleur);
+            $p->setBatterie($obj->batterie);
+            $p->setPoids($obj->poids);
+            $p->setMatiere($obj->matière);
+            array_push($res, $p);
+        }
+        return $res;
+    }
+
+    public function findAllByCategorie($cat): array {
+        $requete = $this->cnx->prepare("select * from Product where category = :idcategory");
+        $requete->bindParam(':idcategory', $cat);
+        $requete->execute();
+        $answer = $requete->fetchAll(PDO::FETCH_OBJ);
+
+        $res = [];
+        foreach($answer as $obj){
+            $p = new Product($obj->id);
+            $p->setName($obj->name);
+            $p->setIdcategory($obj->category);
+            $p->setPrice($obj->price);
+            $p->setImg($obj->img);
+            $p->setDescription($obj->description);
             $p->setTaille($obj->taille);
             $p->setCouleur($obj->couleur);
             $p->setBatterie($obj->batterie);
