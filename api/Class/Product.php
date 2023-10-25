@@ -58,7 +58,7 @@ class Product implements JsonSerializable {
      *  
      */
     public function JsonSerialize(): mixed{
-        return ["id" => $this->id, "name" => $this->name, "category" => $this->idcategory, "price" => $this->price, "description" => $this->description, "img" => $this->img, "taille" => $this->taille, "couleur" => $this->couleur, "batterie" => $this->batterie, "poids" => $this->poids, "matière" => $this->matiere];
+        return ["id" => $this->id, "name" => $this->name, "category" => $this->idcategory, "price" => $this->price, "description" => $this->description, "img" => $this->img, "taille" => $this->taille, "couleur" => $this->couleur, "batterie" => $this->batterie, "poids" => $this->poids, "matiere" => $this->matiere];
     }
 
     /**

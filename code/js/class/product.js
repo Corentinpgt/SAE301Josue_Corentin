@@ -68,6 +68,20 @@ class Product {
     getMatiere() {
         return this.#matiere;
     }
+    getOption() {
+        let result = [];
+        if (this.#batterie == "" & this.#poids == "") {
+            result.push("Matière", this.#taille, this.#couleur, this.#matiere);
+
+        }
+        if (this.#batterie == "" & this.#matiere == "") {
+            result.push("Poids", this.#taille, this.#couleur, this.#poids);
+        }
+        if (this.#matiere == "" & this.#poids == "") {
+            result.push("Batterie", this.#taille, this.#couleur, this.#batterie);
+        }
+        return result;
+    }
 
 }
 

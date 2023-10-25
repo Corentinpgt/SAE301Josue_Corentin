@@ -1,1 +1,1 @@
-<option value="{{options}}">{{options}}</option>
+<option value="{{option}}">{{option}}</option>

@@ -60,7 +60,7 @@ class ProductRepository extends EntityRepository {
             $p->setCouleur($obj->couleur);
             $p->setBatterie($obj->batterie);
             $p->setPoids($obj->poids);
-            $p->setMatiere($obj->matière);
+            $p->setMatiere($obj->matiere);
             array_push($res, $p);
         }
         return $res;
@@ -84,7 +84,7 @@ class ProductRepository extends EntityRepository {
             $p->setCouleur($obj->couleur);
             $p->setBatterie($obj->batterie);
             $p->setPoids($obj->poids);
-            $p->setMatiere($obj->matière);
+            $p->setMatiere($obj->matiere);
             array_push($res, $p);
         }
         return $res;
