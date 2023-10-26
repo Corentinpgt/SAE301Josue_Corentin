@@ -1,10 +1,22 @@
 import { Product } from "../class/product.js";
 
-let get = await fetch("templates/productcard.html.inc");
-const template = await get.text();
+let getbasic = await fetch("templates/productcard.html.inc");
+const templatebasic = await getbasic.text();
+
+let getexpired = await fetch("templates/expired_productcard.html.inc");
+const templateexpired = await getexpired.text();
+
+let getsoon = await fetch("templates/soon_productcard.html.inc");
+const templatesoon = await getsoon.text();
 
 let getpage = await fetch("templates/productpage.html.inc");
-const templatepage = await getpage.text();
+const templatepagebasic = await getpage.text();
+
+let getpagesoon = await fetch("templates/soon_productpage.html.inc");
+const templatepagesoon = await getpagesoon.text();
+
+let getpageexpired = await fetch("templates/expired_productpage.html.inc");
+const templatepageexpired = await getpageexpired.text();
 
 let getul = await fetch("templates/productpage-option.html.inc");
 const templateul = await getul.text();
@@ -23,6 +35,14 @@ let render = function(data){
     for(let p of data){
         // on vérifie que p est bien un Product
         if (p instanceof Product){
+            let  template = templatebasic;
+            console.log(typeof(p.getQuantity()));
+            if (p.getQuantity() == 0) {
+                template = templateexpired;
+            }
+            if (p.getQuantity() <= 5 & p.getQuantity() >0) {
+                template = templatesoon;
+            }
             html = template.replaceAll("{{id}}", p.getId() );
             html = html.replaceAll("{{productname}}", p.getName() );
             html = html.replace("{{productprice}}", p.getPrice() + " €" );
@@ -41,7 +61,15 @@ let render2 = function(data){
     let all = "";
 
     if (data instanceof Product){
-        html = templatepage.replace("{{id}}", data.getId() );
+
+        let  template = templatepagebasic;
+        if (data.getQuantity() == 0) {
+            template = templatepageexpired;
+        }
+        if (data.getQuantity() <= 5 & data.getQuantity() >0) {
+            template = templatepagesoon;
+        }
+        html = template.replace("{{id}}", data.getId() );
         html = html.replaceAll("{{productname}}", data.getName() );
         html = html.replace("{{price}}", data.getPrice() + " €" );
         html = html.replace("{{src}}", data.getImg());

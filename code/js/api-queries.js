@@ -27,8 +27,8 @@ let getRequest = async function(uri){
     };
 
     let response = await fetch(uri, options); // exécution (asynchrone) de la requête et attente de la réponse
-    let $obj = await response.json(); // extraction du json retourné par le serveur (opération asynchrone aussi)
-    return $obj; // et on retourne le tout (response.json() a déjà converti le json en objet Javscript)
+    let obj = await response.json(); // extraction du json retourné par le serveur (opération asynchrone aussi)
+    return obj; // et on retourne le tout (response.json() a déjà converti le json en objet Javscript)
 }
 
 
@@ -58,8 +58,8 @@ let postRequest = async function(uri, data){
     }
 
     let response = await fetch(uri, options); // exécution (asynchrone) de la requête et attente de la réponse
-    let $obj = await response.json(); // extraction du json retourné par le serveur (opération asynchrone aussi)
-    return $obj; // et on retourne le tout (response.json() a déjà converti le json en objet Javscript)
+    let obj = await response.json(); // extraction du json retourné par le serveur (opération asynchrone aussi)
+    return obj; // et on retourne le tout (response.json() a déjà converti le json en objet Javscript)
 }
 
 

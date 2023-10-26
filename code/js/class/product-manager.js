@@ -15,7 +15,7 @@ class ProductCollection {
         this.#uri = uri;
         let objects = await getRequest(uri);
         for(let item of objects){
-            let p = new Product(item.id, item.name, item.category, item.description, item.price, item.img, item.couleur, item.taille, item.batterie, item.poids, item.matiere);
+            let p = new Product(item.id, item.name, item.category, item.description, item.price, item.img, item.couleur, item.taille, item.batterie, item.poids, item.matiere, item.quantity);
             this.#add(p);
         }
         return this.#products.length;

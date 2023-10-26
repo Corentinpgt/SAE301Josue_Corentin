@@ -10,8 +10,9 @@ class Product {
     #batterie;
     #poids;
     #matiere;
+    #quantity;
 
-    constructor(id, name, idcategory, desc, price, img, clr, t, bt, p, m) {
+    constructor(id, name, idcategory, desc, price, img, clr, t, bt, p, m, q) {
         this.#id = id;
         this.#name = name;
         this.#idcategory = idcategory;
@@ -23,6 +24,7 @@ class Product {
         this.#batterie = bt;
         this.#poids = p;
         this.#matiere = m;
+        this.#quantity = q;
     }
 
     getId() {
@@ -67,6 +69,10 @@ class Product {
 
     getMatiere() {
         return this.#matiere;
+    }
+
+    getQuantity() {
+        return this.#quantity;
     }
     getOption() {
         let result = [];

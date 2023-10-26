@@ -61,34 +61,44 @@ class ProductRepository extends EntityRepository {
             $p->setBatterie($obj->batterie);
             $p->setPoids($obj->poids);
             $p->setMatiere($obj->matiere);
+            $p->setQuantity($obj->quantity);
             array_push($res, $p);
         }
         return $res;
     }
 
-    public function findAllByCategorie($cat): array {
-        $requete = $this->cnx->prepare("select * from Product where category = :idcategory");
-        $requete->bindParam(':idcategory', $cat);
-        $requete->execute();
-        $answer = $requete->fetchAll(PDO::FETCH_OBJ);
+    // public function findAllByCategorie($cat): array {
+    //     $requete = $this->cnx->prepare("select * from Product where category = :idcategory");
+    //     $requete->bindParam(':idcategory', $cat);
+    //     $requete->execute();
+    //     $answer = $requete->fetchAll(PDO::FETCH_OBJ);
 
-        $res = [];
-        foreach($answer as $obj){
-            $p = new Product($obj->id);
-            $p->setName($obj->name);
-            $p->setIdcategory($obj->category);
-            $p->setPrice($obj->price);
-            $p->setImg($obj->img);
-            $p->setDescription($obj->description);
-            $p->setTaille($obj->taille);
-            $p->setCouleur($obj->couleur);
-            $p->setBatterie($obj->batterie);
-            $p->setPoids($obj->poids);
-            $p->setMatiere($obj->matiere);
-            array_push($res, $p);
-        }
-        return $res;
-    }
+    //     $res = [];
+    //     foreach($answer as $obj){
+    //         $p = new Product($obj->id);
+    //         $p->setName($obj->name);
+    //         $p->setIdcategory($obj->category);
+    //         $p->setPrice($obj->price);
+    //         $p->setImg($obj->img);
+    //         $p->setDescription($obj->description);
+    //         $p->setTaille($obj->taille);
+    //         $p->setCouleur($obj->couleur);
+    //         $p->setBatterie($obj->batterie);
+    //         $p->setPoids($obj->poids);
+    //         $p->setMatiere($obj->matiere);
+    //         array_push($res, $p);
+    //     }
+    //     return $res;
+    // }
+
+    // public function findStock($id) {
+    //     $requete = $this->cnx->prepare("select * from Stock where id = :idprod");
+    //     $requete->bindParam(':idprod', $id);
+    //     $requete->execute();
+    //     $answer = $requete->fetchAll(PDO::FETCH_OBJ);
+
+    //     return $answer->quantity;
+    // }
 
     public function save($product){
         $requete = $this->cnx->prepare("insert into Product (name, category) values (:name, :idcategory)");

@@ -20,6 +20,7 @@ class Product implements JsonSerializable {
     private string $batterie;
     private string $poids;
     private string $matiere;
+    private int $quantity;
 
 
 
@@ -58,7 +59,7 @@ class Product implements JsonSerializable {
      *  
      */
     public function JsonSerialize(): mixed{
-        return ["id" => $this->id, "name" => $this->name, "category" => $this->idcategory, "price" => $this->price, "description" => $this->description, "img" => $this->img, "taille" => $this->taille, "couleur" => $this->couleur, "batterie" => $this->batterie, "poids" => $this->poids, "matiere" => $this->matiere];
+        return ["id" => $this->id, "name" => $this->name, "category" => $this->idcategory, "price" => $this->price, "description" => $this->description, "img" => $this->img, "taille" => $this->taille, "couleur" => $this->couleur, "batterie" => $this->batterie, "poids" => $this->poids, "matiere" => $this->matiere, "quantity" => $this->quantity];
     }
 
     /**
@@ -191,7 +192,7 @@ class Product implements JsonSerializable {
      */ 
     public function getCouleur()
     {
-        return $this->price;
+        return $this->couleur;
     }
 
     /**
@@ -210,7 +211,7 @@ class Product implements JsonSerializable {
      */ 
     public function getBatterie()
     {
-        return $this->price;
+        return $this->batterie;
     }
 
     /**
@@ -229,7 +230,7 @@ class Product implements JsonSerializable {
      */ 
     public function getPoids()
     {
-        return $this->price;
+        return $this->poids;
     }
 
     /**
@@ -248,7 +249,7 @@ class Product implements JsonSerializable {
      */ 
     public function getMatiere()
     {
-        return $this->price;
+        return $this->matiere;
     }
 
     /**
@@ -259,6 +260,25 @@ class Product implements JsonSerializable {
     public function setMatiere($m): self
     {
         $this->matiere = $m;
+        return $this;
+    }
+
+    /**
+     * Get the value of matiere
+     */ 
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * Set the value of matiere
+     *
+     * @return  self
+     */ 
+    public function setQuantity($q): self
+    {
+        $this->quantity = $q;
         return $this;
     }
 }
