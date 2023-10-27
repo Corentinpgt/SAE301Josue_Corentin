@@ -23,10 +23,15 @@ abstract class Controller {
     public function jsonResponse(HttpRequest $request): ?string{
         $json = false;
         $method = $request->getMethod();
+        $para = $request->getParam("check");
        
         // according to the method, call the appropriate protected method to handle the request
         switch($method){
             case "GET":
+                if ($para != null) {
+                    $data = $this->processCheckStock($request);
+                    break;
+                }
                 $data = $this->processGetRequest($request);
                 break;
             

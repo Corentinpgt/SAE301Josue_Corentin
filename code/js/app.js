@@ -3,6 +3,7 @@ import { CartCollection } from "./class/cartitem-manager.js";
 import { productRender, pageRender } from "./render/product-render";
 import { renderPanier } from "./render/cart-render.js";
 import { CartItem } from "./class/cartitem.js";
+import { getRequest } from "./api-queries.js";
 
 let M = {
     products: new ProductCollection(),
@@ -97,9 +98,12 @@ C.handlerQuantity = function (ev) {
     let barenav = document.querySelector(".list-links");
     barenav.addEventListener("click", C.handlerBareNav);
 
-
+    let order = document.querySelector(".product__btn");
+    order.addEventListener("click", C.handlerOrder);
 
 }
+
+
 
 C.handlerBareNav = function(ev) {
 
@@ -114,11 +118,33 @@ C.handlerBareNav = function(ev) {
         btn.forEach(elt => {
             elt.addEventListener("click", C.handlerQuantity)
         });
+        let order = document.querySelector(".product__btn");
+        order.addEventListener("click", C.handlerOrder);
         
 
     }
     
 
+}
+
+
+C.handlerOrder = async function(ev) {
+    for (const prod of M.cart.getCart()) {
+        let id = prod.getProductId();
+        let uri = await getRequest("https://mmi.unilim.fr/~pouget35/api/products?check="+id)
+        if (prod.getQuantity()<=uri.quantity) {
+            // validation
+            console.log("oui");
+
+        }
+        else {
+            // message
+            // let alert = document.querySelector(".section_modal_rupture");
+            // alert.classList.add("activePopup");
+            console.log("non");
+        }
+        
+    }
 }
 
 

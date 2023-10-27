@@ -67,64 +67,16 @@ class ProductRepository extends EntityRepository {
         return $res;
     }
 
-    // public function findAllByCategorie($cat): array {
-    //     $requete = $this->cnx->prepare("select * from Product where category = :idcategory");
-    //     $requete->bindParam(':idcategory', $cat);
-    //     $requete->execute();
-    //     $answer = $requete->fetchAll(PDO::FETCH_OBJ);
+    public function Check($id){
 
-    //     $res = [];
-    //     foreach($answer as $obj){
-    //         $p = new Product($obj->id);
-    //         $p->setName($obj->name);
-    //         $p->setIdcategory($obj->category);
-    //         $p->setPrice($obj->price);
-    //         $p->setImg($obj->img);
-    //         $p->setDescription($obj->description);
-    //         $p->setTaille($obj->taille);
-    //         $p->setCouleur($obj->couleur);
-    //         $p->setBatterie($obj->batterie);
-    //         $p->setPoids($obj->poids);
-    //         $p->setMatiere($obj->matiere);
-    //         array_push($res, $p);
-    //     }
-    //     return $res;
-    // }
-
-    // public function findStock($id) {
-    //     $requete = $this->cnx->prepare("select * from Stock where id = :idprod");
-    //     $requete->bindParam(':idprod', $id);
-    //     $requete->execute();
-    //     $answer = $requete->fetchAll(PDO::FETCH_OBJ);
-
-    //     return $answer->quantity;
-    // }
-
-    public function save($product){
-        $requete = $this->cnx->prepare("insert into Product (name, category) values (:name, :idcategory)");
-        $name = $product->getName();
-        $idcat = $product->getIdcategory();
-        $requete->bindParam(':name', $name );
-        $requete->bindParam(':idcategory', $idcat);
-        $answer = $requete->execute(); // an insert query returns true or false. $answer is a boolean.
-
-        if ($answer){
-            $id = $this->cnx->lastInsertId(); // retrieve the id of the last insert query
-            $product->setId($id); // set the product id to its real value.
-            return true;
-        }
-          
-        return false;
-    }
-
-    public function delete($id){
-        // Not implemented ! TODO when needed !
-        return false;
-    }
-
-    public function update($product){
-        // Not implemented ! TODO when needed !
-        return false;
+        $requete = $this->cnx->prepare("select quantity from Product where id=:value"); 
+        $requete->bindParam(':value', $id); 
+        $requete->execute(); 
+        $answer = $requete->fetch(PDO::FETCH_OBJ);
+        
+        if ($answer==false) return null;
+        
+        return $answer;
     }
 
    

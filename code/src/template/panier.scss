@@ -68,10 +68,13 @@
 
 
 
-.pricetoto {
+.price__toto {
     display: flex;
+    flex-direction: row;
     margin: 0 auto;
     gap: 2rem;
+    width: 50rem;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 
