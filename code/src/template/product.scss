@@ -27,7 +27,6 @@
 
     &__title {
         color: map-get($tokencolors, --nomvelo );
-        
     }
     
     &__price {
@@ -145,7 +144,7 @@
         }
     
         &__title {
-            font-size: 3rem;            
+            font-size: 3rem;
         }
         
         &__price {

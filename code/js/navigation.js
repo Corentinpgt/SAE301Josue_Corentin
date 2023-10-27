@@ -5,7 +5,7 @@ function handler__menu_responsive() {
     let list = document.querySelector(".list-links");
     let btnspan = document.querySelector(".btn-menu__bar");
     let classes = list.classList;
-
+    
     if (classes.contains("notactive")) {
         classes.remove("notactive");
         classes.add("active");
@@ -18,3 +18,11 @@ function handler__menu_responsive() {
         btnspan.classList.remove('active');
     }
 }
+
+/* let listItem = document.querySelector(".list__item_link");
+
+listItem.addEventListener("click", () => {
+    list.classList.remove("active");
+    btn.classList.remove("active");
+    btnspan.classList.remove("active");
+}); */
