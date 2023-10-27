@@ -48,47 +48,90 @@ C.handlerClickCard = function (ev) {
 C.handlerClickAddCart = function (ev) {
     let id = ev.target.dataset.id;
     let prod = M.products.find(id);
-    let select = document.querySelectorAll("select");
-    let list = [];
-    for (let s of select) {
-        let value = s.value;
-        let name = s.getAttribute("name");
-        let shortlist = [ name, value];
-        list.push(shortlist);
+
+    let idprod = prod.getId();
+    if (M.cart.find(idprod)==undefined) {
+        let select = document.querySelectorAll("select");
+        let list = [];
+        for (let s of select) {
+            let value = s.value;
+            let name = s.getAttribute("name");
+            let shortlist = [ name, value];
+            list.push(shortlist);
+        }
+        let p = new CartItem(prod);
+        p.setSelect(list)
+        M.cart.add(p);
+    
+        let barenav = document.querySelector(".list-links");
+        barenav.addEventListener("click", C.handlerBareNav);
+        }
     }
-    let p = new CartItem(prod);
-    p.setSelect(list)
-    M.cart.add(p);
-    C.init()
+
+    
+
+
+C.handlerQuantity = function (ev) {
+    let use = ev.target.dataset.use;
+    let id = ev.target.parentElement.dataset.id;
+    if (use=="increase") {
+        let cart = M.cart.find(id);
+        let prod = cart.getProduct();
+        if (prod.getQuantity()>cart.getQuantity()) {
+            cart.plus();
+        }
+    }
+    if (use=="decrease") {
+        let cart = M.cart.find(id);
+        if(cart.getQuantity()>0) {
+            cart.minus();
+        }
+    }
+    V.renderCart(M.cart);
+
+    let btn = document.querySelectorAll(".productpanier__btn");
+    btn.forEach(elt => {
+        elt.addEventListener("click", C.handlerQuantity)
+    });
+
+    let barenav = document.querySelector(".list-links");
+    barenav.addEventListener("click", C.handlerBareNav);
+
+
+
 }
 
 C.handlerBareNav = function(ev) {
 
     if (ev.target.id == "accueil") {
         V.renderCard(M.products.findAll());
+        C.init();
 
     }
     if (ev.target.id == "panier") {
         V.renderCart(M.cart);
+        let btn = document.querySelectorAll(".productpanier__btn");
+        btn.forEach(elt => {
+            elt.addEventListener("click", C.handlerQuantity)
+        });
+        
 
     }
-    C.init();
+    
 
 }
 
 
 
 C.init = async function() {
+    let barenav = document.querySelector(".list-links");
+    barenav.addEventListener("click", C.handlerBareNav);
     let nav = document.querySelector("#nav");
     nav.addEventListener("click", C.handlerClickNav);
     let pageacces = document.querySelectorAll(".productcard__btn");
     pageacces.forEach(elt => {
         elt.addEventListener("click", C.handlerClickCard);
     });
-    let barenav = document.querySelector(".list-links");
-    barenav.addEventListener("click", C.handlerBareNav);
-    // let addtocartbtn = document.querySelector(".product__btn");
-    // addtocartbtn.addEventListener("click", C.handlerClickAddCart);
     
 
 }

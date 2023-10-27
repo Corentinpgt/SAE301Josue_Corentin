@@ -1,8 +1,5 @@
 import { Product } from "../class/product.js";
 
-let getnav = await fetch("templates/navigationcategory.html.inc");
-const templatenav = await getnav.text();
-
 let getbasic = await fetch("templates/productcard.html.inc");
 const templatebasic = await getbasic.text();
 
@@ -26,8 +23,11 @@ const templateul = await getul.text();
 
 let getoption = await fetch("templates/productoption.html.inc");
 const templateoption = await getoption.text();
+
+let nav = document.querySelector("#nav").innerHTML;
   
 let render = function(data){
+    document.querySelector("#nav").innerHTML =nav;
     
     let html = "";
     let all = "";
@@ -35,8 +35,7 @@ let render = function(data){
         console.error( "data has to be an array of Products");
         return all;
     }
-    let nav = templatenav;
-    all += nav;
+
     for(let p of data){
         // on vérifie que p est bien un Product
         if (p instanceof Product){
@@ -62,6 +61,8 @@ let render = function(data){
 
 
 let render2 = function(data){
+    document.querySelector("#nav").innerHTML =nav;
+
     
     let html = "";
     let all = "";
@@ -75,8 +76,7 @@ let render2 = function(data){
         if (data.getQuantity() <= 5 & data.getQuantity() >0) {
             template = templatepagesoon;
         }
-        let nav = templatenav;
-        all += nav;
+
         html = template.replaceAll("{{id}}", data.getId() );
         html = html.replaceAll("{{productname}}", data.getName() );
         html = html.replace("{{price}}", data.getPrice() + " €" );

@@ -13,6 +13,11 @@ class CartItem {
         return this.#product;
     }
 
+    getProductId() {
+        return this.#product.getId();
+    }
+
+
     getQuantity() {
         return this.#quantity;
     }

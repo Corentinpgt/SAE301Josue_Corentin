@@ -18,12 +18,12 @@
     </section>
 
     <section class="productpanier__quantity">
-        <p class="productpanier__x">x13</p>
-        <section class="productpanier__btn">
-            <button class="productpanier__plus">
+        <p class="productpanier__x">{{total}}</p>
+        <section data-id="{{id}}" class="productpanier__btn">
+            <button data-use="increase" class="productpanier__plus">
                 +
             </button>
-            <button class="productpanier__minus">
+            <button data-use="decrease" class="productpanier__minus">
                 -
             </button>
         </section>

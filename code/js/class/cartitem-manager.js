@@ -26,6 +26,15 @@ class CartCollection {
         return this.#cart;
     }
 
+    find(id){
+        return this.#cart.find( c => c.getProductId()==id );
+    }
+    findAllId(id) {
+        return this.#cart.filter( c => c.getProductId()==id );
+    }
+
+
+
 
 }
 
