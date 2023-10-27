@@ -1,5 +1,8 @@
 import { Product } from "../class/product.js";
 
+let getnav = await fetch("templates/navigationcategory.html.inc");
+const templatenav = await getnav.text();
+
 let getbasic = await fetch("templates/productcard.html.inc");
 const templatebasic = await getbasic.text();
 
@@ -32,6 +35,8 @@ let render = function(data){
         console.error( "data has to be an array of Products");
         return all;
     }
+    let nav = templatenav;
+    all += nav;
     for(let p of data){
         // on vérifie que p est bien un Product
         if (p instanceof Product){
@@ -43,6 +48,7 @@ let render = function(data){
             if (p.getQuantity() <= 5 & p.getQuantity() >0) {
                 template = templatesoon;
             }
+            
             html = template.replaceAll("{{id}}", p.getId() );
             html = html.replaceAll("{{productname}}", p.getName() );
             html = html.replace("{{productprice}}", p.getPrice() + " €" );
@@ -69,7 +75,9 @@ let render2 = function(data){
         if (data.getQuantity() <= 5 & data.getQuantity() >0) {
             template = templatepagesoon;
         }
-        html = template.replace("{{id}}", data.getId() );
+        let nav = templatenav;
+        all += nav;
+        html = template.replaceAll("{{id}}", data.getId() );
         html = html.replaceAll("{{productname}}", data.getName() );
         html = html.replace("{{price}}", data.getPrice() + " €" );
         html = html.replace("{{src}}", data.getImg());
@@ -86,7 +94,7 @@ let render2 = function(data){
         let alloption = [];
     
         for (let opt of options) {
-    
+
             let optioncode = JSON.parse(opt);
             
             alloption.push(optioncode);

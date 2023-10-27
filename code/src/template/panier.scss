@@ -66,6 +66,20 @@
 
 
 
+.price__toto {
+    display: flex;
+    margin: 0 auto;
+    gap: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+
+    &_para {
+        font-size: x-large;
+    }
+}
+
+
+
 @media screen and (min-width : 1000px) {
 
     .productpanier {
@@ -83,5 +97,9 @@
             font-size: 1.5rem;
             line-height: 7rem;
         }
+    }
+
+    .price__toto {
+        gap: 10rem;
     }
 }

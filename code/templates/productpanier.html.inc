@@ -10,11 +10,7 @@
         <section class="productpanier__desc">
             <h2 class="productpanier__title">{{productname}}</h2>
             <ul class="productpanier__ul">
-                <li class="productpanier__li">Taille : Variable PHP</li>
-
-                <li class="productpanier__li">Pédallier : Variable PHP</li>
-
-                <li class="productpanier__li">Couleur : Variable PHP</li>
+                {{here}}
             </ul>
         </section>
 
@@ -34,7 +30,7 @@
     </section>
 
     <section class="productpanier__price">
-        <p>Prix total</p>
+        <p>{{price}}</p>
     </section>
 
 </article>

@@ -29,7 +29,7 @@
                     {{productdesc}}
                 </p>
     
-                <button class="product__btn">
+                <button data-id="{{id}}" class="product__btn">
                     ajouter au panier
                 </button>
     

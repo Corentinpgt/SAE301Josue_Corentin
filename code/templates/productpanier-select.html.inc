@@ -1,0 +1,1 @@
+<li class="productpanier__li">{{name}} : {{select}}</li>

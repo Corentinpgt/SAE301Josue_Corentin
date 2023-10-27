@@ -584,6 +584,17 @@ h1 {
   background-color: var(--darkBlue);
 }
 
+.price__toto {
+  display: flex;
+  margin: 0 auto;
+  gap: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.price__toto_para {
+  font-size: x-large;
+}
+
 @media screen and (min-width: 1000px) {
   .productpanier {
     width: 57.5rem;
@@ -598,6 +609,9 @@ h1 {
     padding: 0.5rem 2rem;
     font-size: 1.5rem;
     line-height: 7rem;
+  }
+  .price__toto {
+    gap: 10rem;
   }
 }
 .product {
