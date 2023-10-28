@@ -46,21 +46,18 @@ let getRequest = async function(uri){
  *  ATTENTION : La fonction est asynchrone, donc quand on l'appelle il ne faut pas oublier "await".
  *  Exemple : let data = await postRequest(http://.../api/products, {name:"Pain", category:2});
  */
-let postRequest = async function(uri, data){
+let postRequest = async function(uri){
     // encodage des données au format JSON (à vous de bien transmettre ce que le serveur attend)
-    let json = JSON.stringify(data);
 
     // Défition des options de la requêtes
     let options = {
-        method: 'POST',
-        headers: {'Content-type': 'application/json;charset=utf-8'}, // on précise que la requête contient du json
-        body: json // le json est placé dans le corps de la requête
-    }
+        method: 'POST'
+    };
 
-    let response = await fetch(uri, options); // exécution (asynchrone) de la requête et attente de la réponse
-    let obj = await response.json(); // extraction du json retourné par le serveur (opération asynchrone aussi)
-    return obj; // et on retourne le tout (response.json() a déjà converti le json en objet Javscript)
+    await fetch(uri, options); 
+
 }
+
 
 
 /**

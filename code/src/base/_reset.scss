@@ -92,6 +92,120 @@ h1 {
     width: 80%;
 }
 
+
+
+
+body {
+    position: relative;
+}
+
+.btn_product {
+    padding: 0.5rem 1rem;
+    color: white;
+    background: linear-gradient(90deg, #080986, #0050fc);
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.btn_productform {
+    padding: 0.5rem 1rem;
+    color: white;
+    background: linear-gradient(90deg, #080986, #0050fc);
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+
+.btn_productmessage {
+    padding: 0.5rem 1rem;
+    color: white;
+    background: linear-gradient(90deg, #080986, #0050fc);
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.section_modal_rupture,
+.section_modal_formulaire {
+    position: absolute;
+    display: none;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.574);
+    z-index: 100;
+}
+
+.activePopup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal_rupture {
+    position: fixed;
+    display: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    top: 30%;
+    gap: 3rem;
+    max-width: 50rem;
+    margin: 0 1rem;
+    padding: 2rem 1rem;
+    background-color: white;
+
+    &_para {
+        text-align: center;
+    }
+}
+
+.modal_formulaire {
+    position: fixed;
+    display: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    top: 10%;
+    gap: 3rem;
+    max-width: 40rem;
+    width: 100%;
+    margin: 0 1rem;
+    padding: 2rem 1rem;
+    background-color: white;
+
+    &_para {
+        text-align: center;
+    }
+
+    &_links {
+        color: black;
+
+        &:hover {
+            color: #0050fc;
+        }
+    }
+}
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 2.5rem;
+
+    &_input {
+        padding: .5rem 0 .5rem 1rem;
+        width: 100%;
+    }
+}
+
+
+
+
 @media screen and (min-width: 1000px) {
 
     #nav ul{

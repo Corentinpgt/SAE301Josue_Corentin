@@ -40,7 +40,6 @@ let render = function(data){
         // on vérifie que p est bien un Product
         if (p instanceof Product){
             let  template = templatebasic;
-            console.log(typeof(p.getQuantity()));
             if (p.getQuantity() == 0) {
                 template = templateexpired;
             }

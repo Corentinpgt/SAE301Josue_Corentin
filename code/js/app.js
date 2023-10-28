@@ -3,7 +3,7 @@ import { CartCollection } from "./class/cartitem-manager.js";
 import { productRender, pageRender } from "./render/product-render";
 import { renderPanier } from "./render/cart-render.js";
 import { CartItem } from "./class/cartitem.js";
-import { getRequest } from "./api-queries.js";
+import { getRequest, postRequest } from "./api-queries.js";
 
 let M = {
     products: new ProductCollection(),
@@ -127,24 +127,54 @@ C.handlerBareNav = function(ev) {
 
 }
 
+C.handlerPopup = function(ev) {
+    let popo = ev.target.parentElement.parentElement;
+    popo.classList.remove("activePopup");
+}
+
+C.handlerMessage = function(ev) {
+    let popo = ev.target.parentElement.parentElement;
+    popo.classList.remove("activePopup");
+}
+
+C.handlerForm = async function(ev) {
+    let popo = ev.target.parentElement.parentElement.parentElement;
+    popo.classList.remove("activePopup");
+    let popupmessage = document.querySelector("#popupmessage");
+    popupmessage.classList.add("activePopup");
+    let message = document.querySelector("#message");
+    message.addEventListener("click",C.handlerMessage)
+    M.cart.clearCart();
+}
+
 
 C.handlerOrder = async function(ev) {
+    let idlist = [];
     for (const prod of M.cart.getCart()) {
         let id = prod.getProductId();
+        idlist.push(id);
         let uri = await getRequest("https://mmi.unilim.fr/~pouget35/api/products?check="+id)
         if (prod.getQuantity()<=uri.quantity) {
-            // validation
+            let form = document.querySelector(".section_modal_formulaire");
+            form.classList.add("activePopup");
             console.log("oui");
 
         }
         else {
-            // message
-            // let alert = document.querySelector(".section_modal_rupture");
-            // alert.classList.add("activePopup");
+            let alert = document.querySelector(".section_modal_rupture");
+            alert.classList.add("activePopup");
             console.log("non");
+            break;
         }
+
         
     }
+    let okbtn = document.querySelector(".btn_product");
+    okbtn.addEventListener("click", C.handlerPopup);
+    let formbtn = document.querySelector(".btn_productform");
+    formbtn.addEventListener("click", C.handlerForm);
+    await postRequest("https://mmi.unilim.fr/~pouget35/api/order?prods=["+idlist+"]");
+    
 }
 
 

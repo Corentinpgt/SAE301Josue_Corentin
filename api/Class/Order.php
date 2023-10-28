@@ -1,6 +1,6 @@
 <?php
 
-class Product implements JsonSerializable {
+class Order {
     private int $id; 
 
 }

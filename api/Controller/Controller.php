@@ -36,7 +36,7 @@ abstract class Controller {
                 break;
             
             case "POST":
-                $data = $this->processPostRequest($request);
+                $data = $this->processPutOrder($request);
                 break;
 
             case "DELETE":

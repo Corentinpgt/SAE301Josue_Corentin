@@ -33,6 +33,10 @@ class CartCollection {
         return this.#cart.filter( c => c.getProductId()==id );
     }
 
+    clearCart() {
+        this.#cart=[];
+    }
+
 
 
 

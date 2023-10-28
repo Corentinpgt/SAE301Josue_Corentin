@@ -19,10 +19,10 @@ function handler__menu_responsive() {
     }
 }
 
-/* let listItem = document.querySelector(".list__item_link");
+let listItem = document.querySelector(".list__item_link");
 
 listItem.addEventListener("click", () => {
     list.classList.remove("active");
     btn.classList.remove("active");
     btnspan.classList.remove("active");
-}); */
+});

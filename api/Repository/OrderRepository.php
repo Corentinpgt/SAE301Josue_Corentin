@@ -10,17 +10,19 @@ class OrderRepository extends EntityRepository {
         parent::__construct();
     }
 
-    public function Check($id): ?Order{
+    public function find($id): ?Product{
 
-        $requete = $this->cnx->prepare("select quantity from Product where id=:value"); 
-        $requete->bindParam(':value', $id); 
-        $requete->execute(); 
-        $answer = $requete->fetch(PDO::FETCH_OBJ);
-        
-        if ($answer==false) return null;
-        
-        return $answer;
     }
 
-    
+    public function findAll(): array {
+
+    }
+
+    public function AddOrder($prods){
+        
+        $requete = $this->cnx->prepare("INSERT INTO `Order`(`products`) VALUES (:prod)"); 
+        $requete->bindParam(':prod', $prods); 
+        $requete->execute(); 
+
+    }  
 }
